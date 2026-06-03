@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VS21 – Volebné systémy pre 21. storočie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1b4f72;
+      --gold: #c9a84c;
+      --light: #f4f1ec;
+      --white: #ffffff;
+      --gray: #8a8a8a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--navy);
+      color: var(--light);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(13, 27, 42, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--light);
+      font-weight: 400;
+      font-size: 0.8rem;
+      display: block;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: -4px;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      margin-left: 2rem;
+    }
+    nav a:hover { opacity: 1; color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(27, 79, 114, 0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: 'VS21';
+      position: absolute;
+      right: 3rem;
+      bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 18vw;
+      font-weight: 700;
+      color: rgba(201, 168, 76, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-text {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(244, 241, 236, 0.75);
+      max-width: 580px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s both;
+    }
+
+    .hero-line {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+
+    /* PILLARS */
+    .pillars {
+      padding: 6rem 4rem;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      max-width: 1100px;
+    }
+
+    .pillar {
+      border-top: 1px solid rgba(201, 168, 76, 0.3);
+      padding-top: 2rem;
+    }
+
+    .pillar-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(201, 168, 76, 0.2);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .pillar h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .pillar p {
+      font-size: 0.95rem;
+      color: rgba(244, 241, 236, 0.65);
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 6rem 4rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .contact-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1100px;
+    }
+
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact p {
+      color: rgba(244, 241, 236, 0.6);
+      font-size: 0.95rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      padding-bottom: 3px;
+      transition: border-color 0.2s;
+    }
+    .contact-email:hover { border-color: var(--gold); }
+
+    /* UNDER CONSTRUCTION BADGE */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s both;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: rgba(244, 241, 236, 0.3);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .pillars { padding: 4rem 1.5rem; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .contact { padding: 4rem 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo">
+    VS21
+    <span>Volebné systémy pre 21. storočie</span>
+  </a>
+  <nav>
+    <a href="#piliere">Piliere</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-label">Iniciatíva VS21</p>
+    <h1>Volebné systémy<br>pre <em>21. storočie</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-text">
+      V iniciatíve VS21 sa venujeme výskumu a vývoju volebných systémov s&nbsp;dôrazom na ich dôveryhodnosť, odolnosť a reprezentatívnosť.
+    </p>
+    <div class="badge">Stránka sa pripravuje</div>
+  </div>
+</section>
+
+<section class="pillars" id="piliere">
+  <p class="section-label">Tri piliere</p>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-number">01</div>
+      <h3>Dôveryhodnosť</h3>
+      <p>Výsledky volieb musia byť overiteľné a proces transparentný, aby voliči mali istotu, že ich hlas bol zaznamenaný správne a výsledok zodpovedá skutočnej vôli voličov.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">02</div>
+      <h3>Odolnosť</h3>
+      <p>Volebné systémy musia byť odolné voči manipulácii, dezinformáciám a hybridným hrozbám, ktoré ohrozujú integritu demokratického procesu.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">03</div>
+      <h3>Reprezentatívnosť</h3>
+      <p>Výsledky majú odrážať skutočnú vôľu voličov. Systém rešpektuje ich rôznorodosť – od tých, ktorí chcú hlasovať jednoducho a rýchlo, až po tých, ktorí chcú svoj hlasovací lístok maximálne prispôsobiť svojím preferenciám.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label">Kontakt</p>
+      <a href="mailto:juraj.chovan@vs21.sk" class="contact-email">juraj.chovan@vs21.sk</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 VS21 – Volebné systémy pre 21. storočie</span>
+  <span>vs21.sk</span>
+</footer>
+
+</body>
+</html>
